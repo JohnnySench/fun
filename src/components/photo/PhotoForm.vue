@@ -1,6 +1,12 @@
 <script>
 export default {
-  name: "PhotoForm"
+  name: "PhotoForm",
+  data() {
+    return {
+      img: '',
+      searchText: ''
+    }
+  }
 }
 </script>
 
@@ -8,11 +14,13 @@ export default {
   <v-container>
     <v-row class="d-flex align-center">
       <v-text-field
+          v-model="searchText"
           class="mr-6"
           density="compact"
           variant="outlined"
           hide-details/>
       <v-file-input
+          v-model="img"
           density="compact"
           variant="outlined"
           hide-details
