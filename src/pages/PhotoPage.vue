@@ -11,7 +11,7 @@ export default {
     return {
       dataPhoto: [],
       currentPhoto: {},
-      dialogVisible: false
+      modelValue: false
     }
   },
   methods: {
@@ -46,9 +46,8 @@ export default {
         />
       </v-row>
       <PhotoDialog
-          @closePhotoDialog="closeDialog"
+          v-model="modelValue"
           :photo="currentPhoto"
-          v-model="dialogVisible"
       />
     </v-container>
   </div>

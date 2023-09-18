@@ -6,10 +6,6 @@ export default {
       type: Object,
       required: true
     },
-    value: {
-      type: Boolean,
-      default: false
-    }
   },
   data() {
     return {
@@ -17,17 +13,10 @@ export default {
     }
   },
   methods: {
-  },
-  watch: {
-    value(nV) {
-      this.localVisible = nV;
-    },
-    localVisible(nV) {
-      this.$emit('input', nV)
+    closePhotoDialog() {
+      this.localVisible = false;
+      this.$emit('update:modelValue', this.localVisible)
     }
-  },
-  created() {
-    this.localVisible = this.value
   }
 }
 </script>
@@ -46,6 +35,9 @@ export default {
             :src="photo.url"
         />
       </v-card-text>
+      <v-card-actions>
+        <v-btn text="Закрыть" @click="closePhotoDialog"/>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
