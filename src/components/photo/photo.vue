@@ -6,13 +6,24 @@ export default {
       required: true,
       type: Object
     }
-  }
+  },
+  methods: {
+    openPhotoDialog() {
+      this.$emit('openPhotoDialog', {
+        visible: true,
+        data: this.photoInfo
+      })
+    }
+  },
+
 }
 </script>
 
 <template>
   <v-col cols="4">
-    <v-card>
+    <v-card
+      @click="openPhotoDialog"
+    >
       <v-card-title
           v-text="photoInfo.title"
       />
