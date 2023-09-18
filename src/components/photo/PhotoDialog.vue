@@ -17,6 +17,11 @@ export default {
       this.localVisible = false;
       this.$emit('closePhotoDialog', false)
     }
+  },
+  computed: {
+    getTitlePhoto() {
+      return `Название фотографии - ${this.photo.title}`
+    }
   }
 }
 </script>
@@ -28,7 +33,7 @@ export default {
   >
     <v-card>
       <v-card-title
-          v-text="photo.title"
+          v-text="getTitlePhoto"
       />
       <v-card-text>
         <v-img
