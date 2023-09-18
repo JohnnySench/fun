@@ -11,18 +11,18 @@ export default {
     return {
       dataPhoto: [],
       currentPhoto: {},
-      modelValue: false
+      dialogVisible: false
     }
   },
   methods: {
     addPhoto(item) {
       this.dataPhoto.push(item)
     },
-    openPhotoDialog(photo) {
-      this.currentPhoto = photo;
-      this.dialogVisible = true;
+    openPhotoDialog(data) {
+      this.currentPhoto = data.data
+      this.dialogVisible = data.visible
     },
-    closeDialog() {
+    closePhotoDialog() {
       this.dialogVisible = false;
     }
   },
@@ -42,11 +42,12 @@ export default {
             v-for="(item, index) in dataPhoto"
             :key="index"
             :photo-info="item"
-            @openPhoto="openPhotoDialog"
+            @openPhotoDialog="openPhotoDialog"
         />
       </v-row>
       <PhotoDialog
-          v-model="modelValue"
+          @closePhotoDialog="closePhotoDialog"
+          v-model="dialogVisible"
           :photo="currentPhoto"
       />
     </v-container>

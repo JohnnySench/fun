@@ -9,7 +9,10 @@ export default {
   },
   methods: {
     openPhotoDialog() {
-      this.$emit('update:modelValue', true)
+      this.$emit('openPhotoDialog', {
+        visible: true,
+        data: this.photoInfo
+      })
     }
   }
 }

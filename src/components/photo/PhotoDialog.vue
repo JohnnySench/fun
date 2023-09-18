@@ -15,7 +15,7 @@ export default {
   methods: {
     closePhotoDialog() {
       this.localVisible = false;
-      this.$emit('update:modelValue', this.localVisible)
+      this.$emit('closePhotoDialog', false)
     }
   }
 }
