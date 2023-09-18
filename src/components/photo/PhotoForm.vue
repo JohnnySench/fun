@@ -3,8 +3,23 @@ export default {
   name: "PhotoForm",
   data() {
     return {
-      img: '',
+      img: null, // почему то массив фоток
       searchText: ''
+    }
+  },
+  methods: {
+    addPhoto() {
+      const reader = new FileReader();
+      reader.onload = () => {
+        let photo = {
+          id: Date.now(),
+          title: this.searchText,
+          url: reader.result // результат юрл
+        }
+        this.$emit('addPhoto', photo);
+      }
+      reader.readAsDataURL(this.img[0]) // Читаем изображение которое выбрали
+
     }
   }
 }
@@ -29,6 +44,7 @@ export default {
       <v-btn
           class="ml-3"
           text="Добавить"
+          @click="addPhoto"
       />
     </v-row>
   </v-container>

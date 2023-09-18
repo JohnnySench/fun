@@ -11,6 +11,11 @@ export default {
       dataPhoto: [],
     }
   },
+  methods: {
+    addPhoto(item) {
+      this.dataPhoto.push(item)
+    }
+  },
   async mounted() {
     await axios.get('https://jsonplaceholder.typicode.com/photos?_limit=10')
         .then(response => this.dataPhoto = response.data)
@@ -21,7 +26,7 @@ export default {
 <template>
   <div class="mt-12">
     <v-container>
-      <PhotoForm/>
+      <PhotoForm @addPhoto="addPhoto"/>
       <v-row>
         <photo
             v-for="(item, index) in dataPhoto"
