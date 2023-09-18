@@ -6,13 +6,20 @@ export default {
       required: true,
       type: Object
     }
+  },
+  methods: {
+    openPhotoDialog() {
+      this.$emit('update:modelValue', true)
+    }
   }
 }
 </script>
 
 <template>
   <v-col cols="4">
-    <v-card>
+    <v-card
+      @click="openPhotoDialog"
+    >
       <v-card-title
           v-text="photoInfo.title"
       />

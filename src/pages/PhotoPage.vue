@@ -2,18 +2,28 @@
 import Photo from "../components/photo/photo.vue";
 import axios from "axios";
 import PhotoForm from "../components/photo/PhotoForm.vue";
+import PhotoDialog from "../components/photo/PhotoDialog.vue";
 
 export default {
   name: "PhotoPage",
-  components: {PhotoForm, Photo},
+  components: {PhotoDialog, PhotoForm, Photo},
   data() {
     return {
       dataPhoto: [],
+      currentPhoto: {},
+      modelValue: false
     }
   },
   methods: {
     addPhoto(item) {
       this.dataPhoto.push(item)
+    },
+    openPhotoDialog(photo) {
+      this.currentPhoto = photo;
+      this.dialogVisible = true;
+    },
+    closeDialog() {
+      this.dialogVisible = false;
     }
   },
   async mounted() {
@@ -32,10 +42,14 @@ export default {
             v-for="(item, index) in dataPhoto"
             :key="index"
             :photo-info="item"
+            @openPhoto="openPhotoDialog"
         />
       </v-row>
+      <PhotoDialog
+          v-model="modelValue"
+          :photo="currentPhoto"
+      />
     </v-container>
-
   </div>
 </template>
 
